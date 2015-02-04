@@ -113,7 +113,9 @@ namespace ullman {
         }
 
         //prune : refine
+#ifdef REFINE
         refine(_m_columns, 0);
+#endif
 
 #ifdef DEBUG
         //printf("after refine\n%s\n", _m_columns.c_str());
@@ -169,7 +171,10 @@ namespace ullman {
             return ;
         }
 
+#ifdef REFINE
         refine(matrix, idx);
+#endif
+
 #ifdef DEBUG
         //printf("after refine\n%s\n", matrix.c_str());
 #endif

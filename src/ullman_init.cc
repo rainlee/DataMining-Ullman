@@ -7,6 +7,10 @@ namespace ullman {
         Buffer ullman_database;
         Buffer ullman_query;
 
+        timeval t1, t2, t3, t4;
+        double elapsed_time = 0.0f;
+        gettimeofday(&t1, NULL);
+
         _m_seperator.seperate(_m_file_data, ullman_database);
         _m_seperator.seperate(_m_file_query, ullman_query);
 
@@ -14,6 +18,11 @@ namespace ullman {
             fprintf(stderr, "read input database error!\n");
             return ULLMAN_ERROR;
         }
+        
+        gettimeofday(&t2, NULL);
+        elapsed_time = (t2.tv_sec - t1.tv_sec) * 1000.0; 
+        elapsed_time += (t2.tv_usec - t1.tv_usec) / 1000.0;
+        printf("elapsed time->read database %f\n", elapsed_time);
 
         //To-do: sort the vertices 
 
@@ -22,19 +31,20 @@ namespace ullman {
             return ULLMAN_ERROR;
         }
 
-        timeval t1, t2;
-        double elapsed_time = 0.0f;
-        gettimeofday(&t1, NULL);
+        gettimeofday(&t3, NULL);
+        elapsed_time = (t3.tv_sec - t2.tv_sec) * 1000.0; 
+        elapsed_time += (t3.tv_usec - t2.tv_usec) / 1000.0;
+        printf("elapsed time->read query %f\n", elapsed_time);
 
         if (ULLMAN_SUCCESS != query()) {
             fprintf(stderr, "find isomorphism error!\n");
             return ULLMAN_ERROR;
         }           
 
-        gettimeofday(&t2, NULL);
-        elapsed_time = (t2.tv_sec - t1.tv_sec) * 1000.0; 
-        elapsed_time += (t2.tv_usec - t1.tv_usec) / 1000.0;
-        //printf("elapsed time->execute %f\n", elapsed_time);
+        gettimeofday(&t4, NULL);
+        elapsed_time = (t4.tv_sec - t3.tv_sec) * 1000.0; 
+        elapsed_time += (t4.tv_usec - t3.tv_usec) / 1000.0;
+        printf("elapsed time->execute %f\n", elapsed_time);
 
         if (ULLMAN_SUCCESS != output()) {
             fprintf(stderr, "output error!\n");
