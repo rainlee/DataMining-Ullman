@@ -1,12 +1,21 @@
+ver=REFINE
+
 objects=seperator.o ullman_init.o ullman_utils.o main.o ullman_query.o\
 	   	ullman_build.o graph.o\
 
-all : ullman
-
-CXXFLAGS= -g -pg -O2
+ifeq ($(ver), REFINE)
+all: ullman
+CXXFLAGS= -c -O3 -DREFINE
+else
+all: ullman
+CXXFLAGS= -c -O3
+endif
 
 ullman : $(objects)
-	g++ -o ullman -g $(objects) -pg -O2
+	g++ -o ullman $(objects) -pg -O2
+
+ullman2 : $(objects)
+	g++ -o ullman2 $(objects) -pg -O2
 
 seperator.o : seperator.h
 graph.o : graph.h

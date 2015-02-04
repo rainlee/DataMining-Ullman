@@ -72,20 +72,20 @@ namespace ullman {
                     vertice.clear();
                 }
 
-                char indicator, seperator;
-                size_t idx;
-                indicator = buffer[i][0][0];
-                seperator = buffer[i][1][0];
-                sscanf(buffer[i][2].c_str(), "%zu", &idx);
+                //char indicator, seperator;
+                //size_t idx;
+                //indicator = buffer[i][0][0];
+                //seperator = buffer[i][1][0];
+                //sscanf(buffer[i][2].c_str(), "%zu", &idx);
 
-                if (graph_idx != idx) {
-                    fprintf(stderr, "reading buffer warning! %zu %zu\n", graph_idx, idx);   
-                    return ULLMAN_WARNING;
-                }
+                //if (graph_idx != idx) {
+                //    fprintf(stderr, "reading buffer warning! %zu %zu\n", graph_idx, idx);   
+                //    return ULLMAN_WARNING;
+                //}
                 //debug
                 //printf("t # %zu\n", idx);
 
-                graph.set_id(idx);
+                graph.set_id(graph_idx);
                 ++graph_idx;
             } else if (buffer[i][0] == "v") {
                 char indicator;
@@ -128,7 +128,7 @@ namespace ullman {
                 edge.to = from;
                 vertice[to].edges.push_back(edge);
             } else {
-                fprintf(stderr, "reading buffer warning!\n");   
+                //fprintf(stderr, "reading buffer warning!\n");   
             }
         }
 

@@ -1,0 +1,12 @@
+src/*.o
+
+# Ignore Intellij Idea project files
+*.iml
+*.ipr
+.idea
+
+# Ignore Eclipse project files
+
+# Ignore MacOSX files
+.DS_Store
+/bin/

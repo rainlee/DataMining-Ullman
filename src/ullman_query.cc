@@ -1,5 +1,4 @@
 #include "ullman.h"
-#define DEBUG
 
 namespace ullman {
     UllmanReturnCode Isomorphism::query()
